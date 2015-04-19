@@ -4,14 +4,14 @@
 
 // Definisci le costanti
 #define N 2
-#define MAXSTRLENT 20
+#define MAX_STRLEN 20
 
 // Definisci il tipo di dato struct s_studente
 struct s_studente{
-    char nome[MAXSTRLENT+1];
-    char cognome[MAXSTRLENT+1];
+    char nome[MAX_STRLEN+1];
+    char cognome[MAX_STRLEN+1];
     unsigned int eta;
-    char classe[MAXSTRLENT+1];
+    char classe[MAX_STRLEN+1];
 };
 
 // Definisci studente come struct s_studente
