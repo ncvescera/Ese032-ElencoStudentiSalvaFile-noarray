@@ -24,28 +24,43 @@ int main(int argc, char** argv) {
     FILE *puntafile;
     // Codice per l'inserimento, da parte dell'utente, dei dati e del salvataggio
     // nel file
-    puntafile=fopen("elenco.dat","w");
+    puntafile=fopen("elenco.dat","wb");
     if(puntafile!=NULL){
         printf("---Inserimento Dati---\n");
         for(i=0;i<N;i++){
             
             printf("Inserisci il nome del %d studente:\n",i+1);
             scanf("%s",record.nome);
-            fprintf(puntafile,"%s ",record.nome);
             printf("Inserisci il cognome del %d stdente:\n",i+1);
             scanf("%s",record.cognome);
-            fprintf(puntafile,"%s ",record.cognome);
             printf("Inserisci l'età del %d studente:\n",i+1);
             scanf("%d",&record.eta);
-            fprintf(puntafile,"%d ",record.eta);
             printf("Inserisci la classe del %d studente:\n",i+1);
             scanf("%s",record.classe);
-            fprintf(puntafile,"%s\n",record.classe);
+            printf("\n");
             
+            fwrite(&record,sizeof(studente),1,puntafile);
         }
         fclose(puntafile);
+        
+        puntafile=fopen("elenco.dat","rb");
+        printf("---Stampa---\n\n");
+        
+        for(i=0;i<N;i++){
+            fread(&record, sizeof(studente), 1, puntafile);
+            
+            printf("Nome: %s\n",record.nome);
+            printf("Cognome: %s\n",record.cognome);
+            printf("Eta': %d\n",record.eta);
+            printf("Classe: %s\n\n",record.classe);            
+        }
+        
+        fclose(puntafile);
         printf("Tutto è andato a buon fine!\n");
+        
     }
+    
+    
     else
         printf("ERRORE! Non sono riuscito ad aprire il file !\n");
     
